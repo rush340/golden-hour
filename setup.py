@@ -25,7 +25,7 @@ setup(
         "darkskylib==0.3.6",
         "python-twitter==3.4.1",
         "pytz==2016.10",
-        "PyYAML==3.12",
+        "PyYAML==5.1",
         "schema",
         "six==1.10.0",
     ],
