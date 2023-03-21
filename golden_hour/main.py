@@ -77,6 +77,11 @@ def main():
         default=None,
         help='number of minutes before sunset to start timelapse',
     )
+    parser.add_argument('--capture-type',
+        type=str,
+        default=None,
+        help='capture type: facetime, pi, gphoto',
+    )
     parser.add_argument('--post-to-twitter',
         action='store_true',
         default=False,
@@ -89,7 +94,8 @@ def main():
     )
     args = parser.parse_args()
 
-    config = configuration.load_configuration(args.config_file)
+    # config = configuration.load_configuration(args.config_file)
+    config = {'location': 'Seattle'}
     location = get_location(config['location'])
 
     output_dir = 'output'
@@ -116,7 +122,7 @@ def main():
         sunset.wait_for_sunset(location, args.start_before_sunset)
 
     if not args.skip_timelapse:
-        timelapse.create_timelapse(args.duration, args.interval, timelapse_filename)
+        timelapse.create_timelapse(args.duration, args.interval, timelapse_filename, capturer=args.capture_type)
 
     if 'darksky_key' in config:
         darksky_key = config['darksky_key']
