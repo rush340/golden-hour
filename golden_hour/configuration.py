@@ -1,6 +1,9 @@
 import schema
 import yaml
-from yaml import CLoader as Loader
+try:
+    from yaml import CLoader as Loader
+except ImportError:
+    from yaml import Loader
 
 from golden_hour import tweet, location
 
